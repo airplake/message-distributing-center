@@ -9,6 +9,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development  node app.js",
     "serve": "cross-env NODE_ENV=production  node app.js",
+    "lint": "eslint common config modules test app.js",
     "test": "ava --timeout 200000"
   },
   "repository": {

@@ -50,4 +50,10 @@ This project is designed for quick establish an message distributing center to h
 
     npm install --global ava
 
-    npm test                     
+    npm test  
+
+## run eslint
+
+    npm install -g eslint
+
+    npm run link                       
