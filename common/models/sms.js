@@ -7,6 +7,14 @@ module.exports = function (sms) {
         req.body.createtime = new Date();
         next();
     });
+    
+    sms.afterRemote('create', function (ctx, modelInstance, next) {
+        amqpConnection.publish('test exchange', 'sms', JSON.stringify({
+            tel: modelInstance.phone,//电话
+            code: modelInstance.code.toString()  //模板参数
+        }), 'direct');
+        next();
+    })
 };
 
 function MathRand() {
