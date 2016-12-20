@@ -1,5 +1,5 @@
 'use strict';
-
+var app = require('../../server/server');
 module.exports = function (sms) {
     sms.beforeRemote('create', function (context, user, next) {
         var req = context.req;
@@ -7,14 +7,41 @@ module.exports = function (sms) {
         req.body.createtime = new Date();
         next();
     });
-    
+
     sms.afterRemote('create', function (ctx, modelInstance, next) {
-        amqpConnection.publish('test exchange', 'sms', JSON.stringify({
+        amqpConnection.publish('SmsExchange', 'sms', JSON.stringify({
             tel: modelInstance.phone,//电话
             code: modelInstance.code.toString()  //模板参数
         }), 'direct');
         next();
     })
+
+    sms.verification = function (req, res) {
+        var smsModel = app.loopback.findModel('sms');
+        smsModel.findOne({ where: { phone: req.body.phone }, order: 'id DESC' }, function (err, sms) {
+            if (err) return res.jsonp({ errcode: 500, errmsg: err });
+            if (req.body.code == sms.code) {
+                sms.updateAttribute('prooftime', new Date(), function (err, r) {
+                    if (err) return res.jsonp({ errcode: 500, errmsg: err });
+                    res.jsonp({ code: 200, msg: '验证成功' });
+                })
+            } else {
+                res.jsonp({ errcode: 403, errmsg: '验证失败' });
+            }
+        });
+    }
+    sms.remoteMethod(
+        'verification',
+        {
+            //accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
+            accepts: [
+                { arg: 'req', type: 'object', 'http': { source: 'req' } },
+                { arg: 'res', type: 'object', 'http': { source: 'res' } }
+            ],
+            http: { path: '/verification', verb: 'post' }
+            //returns: { arg: 'result', type: 'object' }
+        }
+    );
 };
 
 function MathRand() {

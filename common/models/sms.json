@@ -1,6 +1,6 @@
 {
   "name": "sms",
-  "plural": "Sms",
+  "plural": "sms",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
