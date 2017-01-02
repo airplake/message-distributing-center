@@ -2,15 +2,5 @@
   "db": {
     "name": "db",
     "connector": "memory"
-  },
-  "mysql": {
-    "host": "localhost",
-    "port": 3306,
-    "url": "",
-    "database": "yedian",
-    "password": "9VNjiv8CEf2S",
-    "name": "mysql",
-    "user": "admin",
-    "connector": "mysql"
   }
 }

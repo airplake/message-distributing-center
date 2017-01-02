@@ -2,7 +2,7 @@
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "port": 3000,
-  "rabbitmq":"amqp://admin:EiTUT7uexsBO@localhost:5672",
+  "rabbitmq":"amqp://yedian:yedian123outfox@dev-api.chinacloudapp.cn:5672",
   "remoting": {
     "context": false,
     "rest": {
