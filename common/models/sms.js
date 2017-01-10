@@ -9,7 +9,7 @@ module.exports = function (sms) {
     });
 
     sms.afterRemote('create', function (ctx, modelInstance, next) {
-        let content = `尊敬的夜点用户，您的验证码为${modelInstance.code.toString()}`;
+        let content = `感谢您下载并注册夜点，预订KTV要派对不排队，您的验证码是${modelInstance.code.toString()} 【夜点应用】`;
         amqpConnection.publish('SmsExchange', 'sms', JSON.stringify({
             tel: modelInstance.phone,//电话
             content: content  //模板参数
