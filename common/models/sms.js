@@ -21,6 +21,7 @@ module.exports = function (sms) {
         var smsModel = app.loopback.findModel('sms');
         smsModel.findOne({ where: { phone: req.body.phone }, order: 'id DESC' }, function (err, sms) {
             if (err) return res.jsonp({ errcode: 500, errmsg: err });
+            if (!sms) return res.jsonp({ errcode: 403, errmsg: '验证失败' });
             if (req.body.code == sms.code) {
                 sms.updateAttribute('prooftime', new Date(), function (err, r) {
                     if (err) return res.jsonp({ errcode: 500, errmsg: err });
