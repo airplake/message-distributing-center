@@ -44,19 +44,6 @@ module.exports = function (sms) {
             //returns: { arg: 'result', type: 'object' }
         }
     );
-
-    sms.remoteMethod(
-        'post',
-        {
-            //accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
-            accepts: [
-                { arg: 'req', type: 'object', 'http': { source: 'req' } },
-                { arg: 'res', type: 'object', 'http': { source: 'res' } }
-            ],
-            http: { path: '/verification', verb: 'post' }
-            //returns: { arg: 'result', type: 'object' }
-        }
-    );
 };
 
 function MathRand() {
