@@ -33,7 +33,7 @@
     "public": false
   },
   "sms": {
-    "dataSource": "db",
+    "dataSource": "mysql",
     "public": true
   }
 }
