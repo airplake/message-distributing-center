@@ -5,4 +5,7 @@
  */
 'use strict';
 
-
+const subscriber = require('../lib/rabbitmq/sub');
+subscriber.start(function() {
+    console.log('Consumer started.');
+});

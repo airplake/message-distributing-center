@@ -58,4 +58,18 @@ module.exports = function(sms) {
             // returns: { arg: 'result', type: 'object' }
         }
     );
+
+    sms.test = function(callback) {
+        const publisher = require('../../lib/rabbitmq/pub');
+        publisher.publish({ foo: 'bar' }, 'test', function(err) {
+            if(err) return callback(err);
+            return callback(undefined, '测试');
+        });
+    };
+
+    sms.remoteMethod('test', {
+        accepts: [],
+        http: { path: '/test_sms', verb: 'get' },
+        returns: { arg: 'result', type: 'string' }
+    });
 };
