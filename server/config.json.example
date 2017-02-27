@@ -20,5 +20,13 @@
     "cors": false,
     "handleErrors": false
   },
-  "legacyExplorer": false
+  "legacyExplorer": false,
+  "pubsub": {
+    "connection": "xxxxx",
+    "channel": "MDC_QUEUE",
+    "consumerAdapters": [{
+      "queueName": "test",
+      "require": "../../consume/test"
+    }]
+  }
 }
