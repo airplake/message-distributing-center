@@ -23,3 +23,4 @@ server/config.json
 server/datasources.json
 server/middleware.*
 server/component-config.json
+config/*.js
