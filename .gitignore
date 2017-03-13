@@ -21,3 +21,5 @@ npm-debug.log
 consume/config.js
 server/config.json
 server/datasources.json
+server/middleware.*
+server/component-config.json
