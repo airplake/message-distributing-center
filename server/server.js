@@ -1,9 +1,31 @@
 'use strict';
 
-const loopback = require('loopback');
+const fs = require('fs');
+const path = require('path');
+
 const boot = require('loopback-boot');
+const config = require('config');
+const loopback = require('loopback');
 
 const app = module.exports = loopback();
+
+// prepare configuration
+fs.writeFileSync(
+    path.resolve(__dirname, 'config.json'),
+    JSON.stringify(config.server, true, 2),
+    { encoding: 'utf8' });
+fs.writeFileSync(
+    path.resolve(__dirname, 'datasources.json'),
+    JSON.stringify(config.datasources, true, 2),
+    { encoding: 'utf8' });
+fs.writeFileSync(
+    path.resolve(__dirname, 'middleware.json'),
+    JSON.stringify(config.middleware, true, 2),
+    { encoding: 'utf8' });
+fs.writeFileSync(
+    path.resolve(__dirname, 'component-config.json'),
+    JSON.stringify(config.component, true, 2),
+    { encoding: 'utf8' });
 
 app.start = function() {
     // start the web server
