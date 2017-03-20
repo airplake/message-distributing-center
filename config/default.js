@@ -108,6 +108,9 @@ module.exports = {
     queue: {
         connection: 'amqp://foo:bar@127.0.0.1:5672',
         channel: 'MDC_QUEUE',
-        consumerAdapters: []
+        consumerAdapters: [{
+            queueName: 'email',
+            require: 'mdc-email-smtp'
+        }]
     }
 };

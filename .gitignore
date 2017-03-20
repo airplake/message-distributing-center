@@ -24,3 +24,6 @@ server/datasources.json
 server/middleware.*
 server/component-config.json
 config/*.js
+
+.apiconnect
+definitions

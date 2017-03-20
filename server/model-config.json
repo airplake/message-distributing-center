@@ -35,5 +35,9 @@
   "sms": {
     "dataSource": "mysql",
     "public": true
+  },
+  "email": {
+    "dataSource": "mysql",
+    "public": true
   }
 }
