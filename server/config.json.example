@@ -4,7 +4,9 @@
   "port": 3001,
   "rabbitmq":"xxxxx",
   "smsByTemplate": {
-    "0": "谢谢你,请点击{0}"
+    "0": "{0}邀请你成为管理员,请点击\r\n http://staging-web.ye-dian.com/login \r\n【夜点应用】",
+    "1": "{0}邀请你成为BD,请点击\r\n http://staging-web.ye-dian.com/login \r\n【夜点应用】",
+    "2": "春江水暖“夜”先知，到“点”升级新玩法，欢迎来到「夜点2.0」时代！我们将持续为你带来城中潮流品质夜生活！更多精彩资讯丰厚优惠点击{0}即可赢取。 \r\n【夜点应用】"
   },
   "remoting": {
     "context": false,
