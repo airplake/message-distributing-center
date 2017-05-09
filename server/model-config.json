@@ -39,5 +39,9 @@
   "email": {
     "dataSource": "mysql",
     "public": true
+  },
+  "wechat": {
+    "dataSource": "mysql",
+    "public": true
   }
 }
