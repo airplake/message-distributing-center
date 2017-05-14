@@ -8,7 +8,7 @@ module.exports = function(Wechat) {
             to: wechat.to,
             templateId: wechat.templateId,
             data: wechat.data,
-            url: wechat.data
+            url: wechat.url
         };
         publisher.publish(message, wechat.queue, function() {
             next();
