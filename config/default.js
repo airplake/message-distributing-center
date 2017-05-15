@@ -45,17 +45,17 @@ module.exports = {
             connector: 'memory'
         },
         mysql: {
-            host: '127.0.0.1',
+            host: 'stagingmysql1.mysqldb.chinacloudapi.cn',
             port: 3306,
             url: '',
             database: 'yedian-mdc',
-            password: '',
+            password: 'agargh2IUHiu',
             name: 'mysql',
-            user: 'root',
+            user: 'stagingmysql1%staging',
             connector: 'mysql'
         }
     },
-
+    
     // refer to http://loopback.io/doc/en/lb2/middleware.json.html
     middleware: {
         'initial:before': {
@@ -106,11 +106,15 @@ module.exports = {
     },
 
     queue: {
-        connection: 'amqp://foo:bar@127.0.0.1:5672',
+        connection: 'amqp://yedian:yedian123outfox@staging-api.chinacloudapp.cn:5672',
         channel: 'MDC_QUEUE',
         consumerAdapters: [{
             queueName: 'email',
             require: 'mdc-email-smtp'
+        },{
+            queueName: 'wechat',
+            require: 'mdc-weixin',
+            tokenUrl: 'http://127.0.0.1:4000/internal/user/wechat/accessToken'
         }]
     }
 };
