@@ -5,6 +5,7 @@ module.exports = function(app, callback) {
     console.log('Connecting to RabbitMQ...');
     publisher.start(function(err) {
         if(err) return callback(err);
+        require('../../consume');
         console.log('🐇 MQ producer started.');
         callback();
     });
