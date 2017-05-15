@@ -55,7 +55,7 @@ module.exports = {
             connector: 'mysql'
         }
     },
-    
+
     // refer to http://loopback.io/doc/en/lb2/middleware.json.html
     middleware: {
         'initial:before': {
@@ -114,7 +114,7 @@ module.exports = {
         },{
             queueName: 'wechat',
             require: 'mdc-weixin',
-            tokenUrl: 'http://127.0.0.1:4000/internal/user/wechat/accessToken'
+            tokenUrl: 'http://dev-yedian.chinacloudapp.cn:4000/internal/user/wechat/accessToken'
         }]
     }
 };
