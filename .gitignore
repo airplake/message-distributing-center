@@ -27,3 +27,6 @@ config/*.js
 
 .apiconnect
 definitions
+
+#yarn
+yarn.lock
