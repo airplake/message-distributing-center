@@ -45,13 +45,13 @@ module.exports = {
             connector: 'memory'
         },
         mysql: {
-            host: 'stagingmysql1.mysqldb.chinacloudapi.cn',
+            host: '',
             port: 3306,
             url: '',
             database: 'yedian-mdc',
-            password: 'agargh2IUHiu',
+            password: '',
             name: 'mysql',
-            user: 'stagingmysql1%staging',
+            user: '',
             connector: 'mysql'
         }
     },
@@ -106,15 +106,16 @@ module.exports = {
     },
 
     queue: {
-        connection: 'amqp://yedian:yedian123outfox@staging-api.chinacloudapp.cn:5672',
-        channel: 'MDC_QUEUE',
+       // connection: 'amqp://yedian:yedian123outfox@staging-api.chinacloudapp.cn:5672',
+	    connection: 'amqp://admin:admin@localhost:5672',
+	    channel: 'MDC_QUEUE',
         consumerAdapters: [{
             queueName: 'email',
             require: 'mdc-email-smtp'
         },{
             queueName: 'wechat',
             require: 'mdc-weixin',
-            tokenUrl: 'http://dev-yedian.chinacloudapp.cn:4000/internal/user/wechat/accessToken'
+            tokenUrl: ''
         }]
     }
 };
