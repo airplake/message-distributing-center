@@ -26,19 +26,14 @@
   },
   "RoleMapping": {
     "dataSource": "db",
-    "public": false
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
   },
   "Role": {
     "dataSource": "db",
     "public": false
-  },
-  "sms": {
-    "dataSource": "mysql",
-    "public": true
-  },
-  "email": {
-    "dataSource": "mysql",
-    "public": true
   },
   "wechat": {
     "dataSource": "mysql",
