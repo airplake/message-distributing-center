@@ -11,7 +11,7 @@
     },
     "queue": {
       "type": "string",
-      "required": true
+      "defalut":"wechat"
     },
     "message":{
       "type": "object",
