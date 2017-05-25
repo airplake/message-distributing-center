@@ -10,7 +10,7 @@ module.exports = {
     }, {
       queueName: 'wechat',
       require: 'mdc-weixin',
-      tokenUrl: 'http://dev-yedian.chinacloudapp.cn:4000/internal/user/wechat/accessToken'
+      tokenUrl: 'http://10.0.0.27:4000/internal/user/wechat/accessToken'
     }]
   }
 }
