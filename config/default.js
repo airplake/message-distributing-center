@@ -14,6 +14,6 @@ module.exports = {
     }]
   },
   wechatTemplate: {
-    '1': 'W0SD6fOrDlSc763b19cndjvA82naKNvGy9NAGLZrjSo'
+    '1': ''
   }
 }
