@@ -12,5 +12,8 @@ module.exports = {
       require: 'mdc-weixin',
       tokenUrl: 'http://127.0.0.1/getAccessToken'
     }]
+  },
+  wechatTemplate: {
+    '1': 'W0SD6fOrDlSc763b19cndjvA82naKNvGy9NAGLZrjSo'
   }
 }
