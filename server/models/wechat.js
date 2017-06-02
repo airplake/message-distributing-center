@@ -4,7 +4,13 @@ const wechatTemplate = require('config').wechatTemplate
 
 module.exports = function (Wechat) {
   Wechat.afterRemote('create', function (ctx, wechat, next) {
-    wechat.message.templateId = wechatTemplate[wechat.message.templateId]
+    switch (wechat.emit) {
+      case 'sendTemplate' :
+        wechat.message.templateId = wechatTemplate[wechat.message.templateId]
+        break
+      default:
+        break
+    }
     const message = wechat
     publisher.publish(message, 'wechat', function () {
       next()
