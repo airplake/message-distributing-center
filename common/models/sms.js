@@ -25,7 +25,7 @@ module.exports = function (sms) {
     smsModel.findOne({ where: { phone: req.body.phone }, order: 'id DESC' }, function (err, sms) {
       if (err) return res.jsonp({ errcode: 500, errmsg: err })
       if (!sms) return res.jsonp({ errcode: 403, errmsg: '验证失败' })
-      if (req.body.code === sms.code) {
+      if (req.body.code.toString() === sms.code.toString()) {
         sms.updateAttribute('prooftime', new Date(), function (err, r) {
           if (err) return res.jsonp({ errcode: 500, errmsg: err })
           res.jsonp({ code: 200, msg: '验证成功' })
