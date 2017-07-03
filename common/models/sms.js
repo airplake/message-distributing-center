@@ -9,10 +9,10 @@ module.exports = function (sms) {
   })
 
   sms.afterRemote('create', function (ctx, modelInstance, next) {
-    let content = `感谢您注册Night+夜晚生活玩乐平台，尽享夜晚玩乐资讯&福利，您的验证码是${modelInstance.code.toString()} 【Night+】`
-    if (ctx.req.query.type === 'login') {
-      content = `您的登入验证码是${modelInstance.code.toString()}  \r\n【Night+】`
-    }
+    // let content = `感谢您注册NightPlus夜晚生活玩乐平台，尽享夜晚玩乐资讯&福利，您的验证码是${modelInstance.code.toString()} 【NightPlus】`
+    // if (ctx.req.query.type === 'login') {
+    let content = `您的登入验证码是${modelInstance.code.toString()}  \r\n【NightPlus】`
+    // }
     amqpConnection.publish('SmsExchange', 'sms', JSON.stringify({
       tel: modelInstance.phone, // 电话
       content: content  // 模板参数
