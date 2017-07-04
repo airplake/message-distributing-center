@@ -13,7 +13,7 @@ module.exports = function (sms) {
     // if (ctx.req.query.type === 'login') {
     let content = `您的登入验证码是${modelInstance.code.toString()}  \r\n【Night%2B】`
     // }
-    amqpConnection.publish('SmsExchange', 'sms', JSON.stringify({
+    amqpConnection.publish('SmsExchangeProd', 'sms', JSON.stringify({
       tel: modelInstance.phone, // 电话
       content: content  // 模板参数
     }), 'direct')
