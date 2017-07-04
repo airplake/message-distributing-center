@@ -11,6 +11,7 @@ module.exports = function (sms) {
   sms.afterRemote('create', function (ctx, modelInstance, next) {
     // let content = `感谢您注册NightPlus夜晚生活玩乐平台，尽享夜晚玩乐资讯&福利，您的验证码是${modelInstance.code.toString()} 【NightPlus】`
     // if (ctx.req.query.type === 'login') {
+    console.log('ip:' + get_client_ip(ctx.req) + '_ number:' + modelInstance.code.toString())
     let content = `您的登入验证码是${modelInstance.code.toString()}  \r\n【Night%2B】`
     // }
     amqpConnection.publish('SmsExchangeProd', 'sms', JSON.stringify({
@@ -56,4 +57,16 @@ function MathRand () {
     num += random === 0 ? 1 : random
   }
   return num
+}
+
+var get_client_ip = function (req) {
+  var ip = req.headers['x-forwarded-for'] ||
+        req.ip ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress || ''
+  if (ip.split(',').length > 0) {
+    ip = ip.split(',')[0]
+  }
+  return ip
 }
