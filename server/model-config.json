@@ -38,5 +38,13 @@
   "wechat": {
     "dataSource": "mysql",
     "public": true
+  },
+  "sms": {
+    "dataSource": "mysql",
+    "public": true
+  },
+  "smsByTemplate": {
+    "dataSource": "mysql",
+    "public": true
   }
 }

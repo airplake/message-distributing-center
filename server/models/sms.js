@@ -18,10 +18,12 @@ module.exports = function (sms) {
     // let content = `感谢您注册NightPlus夜晚生活玩乐平台，尽享夜晚玩乐资讯&福利，您的验证码是${modelInstance.code.toString()} 【NightPlus】`
     console.log('ip:' + getClientIp(ctx.req) + '_ number:' + sms.code.toString())
     let message = {
-      tel: sms.phone,
-      code: 'hello world'
+      message: {
+        tel: sms.phone,
+        code: sms.code,
+        templateId: process.env.SMS_TEMPLATE_CODE
+      }
     }
-
     publisher.publish(message, 'sms-alidayu', function () {
       next()
     })
