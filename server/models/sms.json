@@ -1,0 +1,27 @@
+{
+  "name": "sms",
+  "plural": "sms",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "phone": {
+      "type": "string"
+    },
+    "code": {
+      "type": "number"
+    },
+    "createtime": {
+      "type": "date"
+    },
+    "prooftime": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

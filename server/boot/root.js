@@ -1,8 +1,9 @@
-'use strict';
+'use strict'
 
-module.exports = function(server) {
+module.exports = function (server) {
   // Install a `/` route that returns server status
-  var router = server.loopback.Router();
-  router.get('/', server.loopback.status());
-  server.use(router);
-};
+  require('dotenv').load(); // eslint-disable-line
+  var router = server.loopback.Router()
+  router.get('/', server.loopback.status())
+  server.use(router)
+}
