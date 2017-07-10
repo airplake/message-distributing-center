@@ -30,7 +30,6 @@ module.exports = function (sms) {
       }
     }
 
-    console.log('ctx.req.query.type', ctx.req.query.type)
     if (ctx.req.query.type === 'login') {
       message.message.TemplateCode = smsTemplate[2]
     }
