@@ -30,3 +30,5 @@ definitions
 
 #yarn
 yarn.lock
+
+.env
