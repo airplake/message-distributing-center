@@ -1,22 +1,22 @@
 {
-  "name": "smsByTemplate",
-  "plural": "smsByTemplate",
+  "name": "sms",
+  "plural": "sms",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "templateid": {
+    "phone": {
       "type": "string"
     },
-    "tel":{
-      "type": "string"
-    },
-    "message": {
-      "type": "string"
+    "code": {
+      "type": "number"
     },
     "createtime": {
+      "type": "date"
+    },
+    "prooftime": {
       "type": "date"
     }
   },

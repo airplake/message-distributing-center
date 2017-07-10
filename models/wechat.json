@@ -1,23 +1,21 @@
 {
-  "name": "smsByTemplate",
-  "plural": "smsByTemplate",
+  "name": "wechat",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "templateid": {
+    "emit": {
       "type": "string"
     },
-    "tel":{
-      "type": "string"
+    "queue": {
+      "type": "string",
+      "defalut":"wechat"
     },
-    "message": {
-      "type": "string"
-    },
-    "createtime": {
-      "type": "date"
+    "message":{
+      "type": "object",
+      "required": true
     }
   },
   "validations": [],

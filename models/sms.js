@@ -29,8 +29,6 @@ module.exports = function (sms) {
         OutId: ''// 可选
       }
     }
-
-    console.log('ctx.req.query.type', ctx.req.query.type)
     if (ctx.req.query.type === 'login') {
       message.message.TemplateCode = smsTemplate[2]
     }
@@ -55,15 +53,16 @@ module.exports = function (sms) {
       }
     })
   }
-  sms.remoteMethod('verification', {
-    // accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
-    accepts: [
+  sms.remoteMethod('verification',
+    {
+            // accepts: { arg: 'data', type: 'object', http: { source: 'body' } },
+      accepts: [
                 { arg: 'req', type: 'object', 'http': { source: 'req' } },
                 { arg: 'res', type: 'object', 'http': { source: 'res' } }
-    ],
-    http: { path: '/verification', verb: 'post' }
-    // returns: { arg: 'result', type: 'object' }
-  })
+      ],
+      http: { path: '/verification', verb: 'post' }
+            // returns: { arg: 'result', type: 'object' }
+    })
 }
 
 function MathRand () {
@@ -75,14 +74,14 @@ function MathRand () {
   return num
 }
 
-// var getClientIp = function (req) {
-//   var ip = req.headers['x-forwarded-for'] ||
-//         req.ip ||
-//         req.connection.remoteAddress ||
-//         req.socket.remoteAddress ||
-//         req.connection.socket.remoteAddress || ''
-//   if (ip.split(',').length > 0) {
-//     ip = ip.split(',')[0]
-//   }
-//   return ip
-// }
+var getClientIp = function (req) {
+  var ip = req.headers['x-forwarded-for'] ||
+        req.ip ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress || ''
+  if (ip.split(',').length > 0) {
+    ip = ip.split(',')[0]
+  }
+  return ip
+}
