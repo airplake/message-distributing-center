@@ -25,7 +25,8 @@ module.exports = {
     '0': process.env.SMS_Template_0, 
     '1': process.env.SMS_Template_1, 
     '2': process.env.SMS_Template_2, 
-    '3': process.env.SMS_Template_3 
+    '3': process.env.SMS_Template_3,
+    '4': process.env.SMS_Template_4  
   }
 }
 
