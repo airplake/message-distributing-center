@@ -1,9 +1,0 @@
-{
-  "extends": [ "xadillax-style" ],
-  "rules": {
-    "quotes": [ "error", "single" ]
-  },
-  "globals": {
-    "amqpConnection": true
-  }
-}
