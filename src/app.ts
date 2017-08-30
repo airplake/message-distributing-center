@@ -37,6 +37,12 @@ app.use(methodOverride());
 
 app.use("/api", router);
 
+// root /
+app.get('/', function (req, res) {
+  return res.send({'started': new Date()})
+})
+
+
 // 所有路由都未匹配（404）
 app.use("*", function(req, res) {
   return res.sendStatus(404);
@@ -45,7 +51,8 @@ app.use("*", function(req, res) {
 if (!module.parent) {
   app.listen(config.get("app.port") || 4000, config.get("app.host") || "127.0.0.1", () => {
     //publisher
-    start(() => {
+    start((err:Error) => {
+      if(err) return  logger.error(`rabbitmq error`,err);
       logger.info(`服务器启动，${config.get("app.host")}:${config.get("app.port")}`);
     });
 
