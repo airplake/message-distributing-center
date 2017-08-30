@@ -19,14 +19,14 @@ module.exports = {
     connection: process.env.AMP_URL,
     channel: 'MDC_QUEUE',
     consumerAdapters: [{
-      queueName: 'email',
+      queueName: process.env.EMAIL_QUEUE,
       require: 'mdc-email-smtp'
     }, {
-      queueName: 'wechat',
+      queueName: process.env.WECHAT_QUEUE,
       require: 'mdc-weixin',
       tokenUrl: process.env.TOKEN_URL
     }, {
-      queueName: 'sms-aliyun',
+      queueName: process.env.SMS_ALIYUN_QUEUE,
       require: 'mdc-sms-aliyun',
       AccessKeyId: process.env.APPKEY, // 填写你的AccessKeyId,可以登录阿里云查找
       AccessKeySecret: process.env.APPSECRET // 填写你的AccessKeySecret，可以登录阿里云查找

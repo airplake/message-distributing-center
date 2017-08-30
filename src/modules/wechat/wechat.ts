@@ -33,7 +33,7 @@ wechat.post('/',
                     break
             }
             logger.info('wechat:post:message', req.body)
-            publisher.publish(req.body, 'wechat', function () {
+            publisher.publish(req.body, require('config').queue.consumerAdapters[1].queueName, function () {
                 res.send(result)
             })
         } catch (error) {

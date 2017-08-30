@@ -32,7 +32,8 @@
     "mdc-weixin": "^1.0.5",
     "method-override": "^2.3.9",
     "mysql": "^2.14.1",
-    "tslint": "^5.7.0"
+    "tslint": "^5.7.0",
+    "typescript": "^2.4.2"
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.5",

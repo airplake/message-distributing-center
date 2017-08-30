@@ -39,7 +39,7 @@ sms.post('/',
                 message.message.TemplateCode = smsTemplate[2].TemplateCode
             }
             logger.info('sms:post:message', message)
-            publisher.publish(message, 'sms-aliyun', function () {
+            publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
                 res.send(result)
             })
         } catch (error) {

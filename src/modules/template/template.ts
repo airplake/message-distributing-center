@@ -39,7 +39,7 @@ template.post('/',
                 }
             }
             logger.info('template:post:message', message)
-            publisher.publish(message, 'sms-aliyun', function () {
+            publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
                 res.send(result)
             })
         } catch (error) {
