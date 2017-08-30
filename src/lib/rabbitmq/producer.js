@@ -23,7 +23,7 @@ exports.start = function (callback) {
 exports.publish = function (message, consumerAdapter, callback) {
   // const retry = arguments[3] || 0;
   const routingKey = `${CHANNEL}.${consumerAdapter}`
-  //console.log('consumerAdapter', routingKey)
+  // console.log('consumerAdapter', routingKey)
   ch.publish(`mdc`, routingKey, Buffer.from(JSON.stringify(message)), { deliveryMode: 2, contentType: 'application/json' })
   callback()
 }

@@ -7,17 +7,9 @@
  * Copyright (c) 2017 Your Company
  */
 
+import * as config from 'config'
 
-const knex = require('knex')({
-    client: 'mysql',
-    connection: {
-        host: '192.168.1.9',
-        user: 'root',
-        password: 'root',
-        database: 'yedian-mdc',
-        charset: 'utf8'
-    }
-})
+const knex = require('knex')(config.get('db'))
 
 const bookshelf = require('bookshelf')(knex)
 

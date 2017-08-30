@@ -10,7 +10,6 @@
 import * as log4js from 'log4js'
 import { Router, Request, Response, NextFunction } from 'express';
 import Wechat from '../../models/wechat'
-import * as config from 'config'
 const publisher = require('../../lib/rabbitmq/producer')
 const wechatTemplate = require('config').wechatTemplate
 

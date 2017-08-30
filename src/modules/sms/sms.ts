@@ -10,7 +10,6 @@
 import * as log4js from 'log4js'
 import { Router, Request, Response, NextFunction } from 'express';
 import Sms from '../../models/sms'
-import * as config from 'config'
 const publisher = require('../../lib/rabbitmq/producer')
 const smsTemplate = require('config').smsTemplate
 
