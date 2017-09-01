@@ -12,7 +12,7 @@ import * as cors from "cors";
 import * as dotenv from "dotenv";
 import * as express from "express";
 import * as methodOverride from "method-override";
-dotenv.config();   //before config
+dotenv.config();   // before config
 import * as config from "config";
 import * as log4js from "log4js";
 import { start } from "./boot";
@@ -26,22 +26,21 @@ const app = express();
 
 app.use(log4js.connectLogger(logger, { level: log4js.levels.INFO }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
   origin: true,
   credentials: true,
 }));
 // add put delete method
 app.use(methodOverride());
-//app.use(APIOutputMiddleware)
+// app.use(APIOutputMiddleware)
 
 app.use("/api", router);
 
 // root /
-app.get('/', function (req, res) {
-  return res.send({'started': new Date()})
-})
-
+app.get("/", function(req, res) {
+  return res.send({started: new Date()});
+});
 
 // 所有路由都未匹配（404）
 app.use("*", function(req, res) {
@@ -50,9 +49,9 @@ app.use("*", function(req, res) {
 
 if (!module.parent) {
   app.listen(config.get("app.port") || 4000, config.get("app.host") || "127.0.0.1", () => {
-    //publisher
-    start((err:Error) => {
-      if(err) return  logger.error(`rabbitmq error`,err);
+    // publisher
+    start((err: Error) => {
+      if (err) return  logger.error(`rabbitmq error`, err);
       logger.info(`服务器启动，${config.get("app.host")}:${config.get("app.port")}`);
     });
 

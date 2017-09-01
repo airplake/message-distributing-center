@@ -63,6 +63,10 @@ module.exports = {
     '6': {
       SignName: process.env.SMS_FREE_SIGN_NAME_0,
       TemplateCode: process.env.SMS_Template_6
+    },
+    '7': {
+      SignName: process.env.SMS_FREE_SIGN_NAME_0,
+      TemplateCode: process.env.SMS_Template_7
     }
   },
   log: {
