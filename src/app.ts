@@ -19,6 +19,9 @@ import { start } from "./boot";
 import router from "./router";
 
 // log config
+log4js.layouts.addLayout('json', function (config) {
+  return function (logEvent) { return JSON.stringify(logEvent) + config.separator }
+})
 log4js.configure(config.get("log"));
 const logger = log4js.getLogger("http");
 

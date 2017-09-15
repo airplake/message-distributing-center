@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon  ./src/app.ts --exec ts-node  --no-cache ",
+    "start": "nodemon  ./src/app.ts --exec ts-node  --no-cache  --ignore=./config",
     "build": "tsc"
   },
   "config": {
@@ -27,7 +27,7 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "knex": "^0.13.0",
-    "log4js": "^2.3.3",
+    "log4js": "^1.1.1",
     "mdc-sms-aliyun": "^1.0.0",
     "mdc-weixin": "^1.0.5",
     "method-override": "^2.3.9",

@@ -70,40 +70,42 @@ module.exports = {
     }
   },
   log: {
-    appenders: {
-      default: {
+    appenders: [ // 日志
+      {
         type: 'console'
-      },
-      http: {
+      }, // 控制台输出
+      {
         type: 'file',
-        filename: 'logs/http.log'
+        filename: 'logs/http.log',
+        maxLogSize: 20480,
+        backups: 1,
+        category: 'http',
+        layout: { type: 'json', separator: ',' }
       },
-      sms: {
+      {
         type: 'file',
-        filename: 'logs/sms.log'
+        filename: 'logs/init.log',
+        maxLogSize: 20480,
+        backups: 1,
+        category: 'init',
+        layout: { type: 'json', separator: ',' }
       },
-      wechat: {
+      {
         type: 'file',
-        filename: 'logs/wechat.log'
+        filename: 'logs/sms.log',
+        maxLogSize: 52428800,
+        backups: 2,
+        category: 'sms',
+        layout: { type: 'json', separator: ',' }
+      },
+      {
+        type: 'file',
+        filename: 'logs/wechat.log',
+        maxLogSize: 52428800,
+        backups: 1,
+        category: 'wechat',
+        layout: { type: 'json', separator: ',' }
       }
-    },
-    categories: {
-      default: {
-        appenders: ['default'],
-        level: 'debug'
-      },
-      http: {
-        appenders: ['http', 'default'],
-        level: 'debug'
-      },
-      sms: {
-        appenders: ['sms', 'default'],
-        level: 'debug'
-      },
-      wechat: {
-        appenders: ['wechat', 'default'],
-        level: 'debug'
-      }
-    }
+    ]
   }
 }
