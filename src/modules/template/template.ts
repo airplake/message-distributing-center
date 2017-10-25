@@ -34,7 +34,7 @@ template.post('/',
                     PhoneNumbers: req.body.tel, // 要发送到短信的手机
                     SignName: smsTemplate[req.body.templateid].SignName, // 短信签名，阿里云短信平台申请
                     TemplateCode: smsTemplate[req.body.templateid].TemplateCode, // 短信模板Code，阿里云短信平台申请
-                    TemplateParam: `{"name":"${req.body.message}"}`, // 短信模板中参数指定，以你的为准替换之
+                    TemplateParam:Object.assign({"name":(req.body.message.name || req.body.message)}, req.body.message),
                     OutId: ''// 可选
                 }
             }
@@ -49,5 +49,7 @@ template.post('/',
     }
 )
 
+
+Object.assign({"name":111}, 11)
 
 export { template }
