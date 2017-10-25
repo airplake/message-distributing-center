@@ -51,7 +51,7 @@ sms.post('/',
 
 sms.post('/verification',
     async (req: Request, res: Response, next: NextFunction) => {
-
+        res.send('ok')
     }
 )
 

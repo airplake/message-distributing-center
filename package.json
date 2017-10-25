@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon  ./src/app.ts --exec ts-node  --no-cache  --ignore=./config",
-    "build": "tsc"
+    "build": "tsc & cp -r ./src/lib/rabbitmq  ./dist/lib/rabbitmq"
   },
   "config": {
     "pre-git": {
