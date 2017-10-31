@@ -9,12 +9,14 @@
 
 import { Router } from "express";
 import { sms } from "./modules/sms";
+import { jpushNotification } from "./modules/jpushNotification";
 import { template } from "./modules/template";
 import { wechat } from "./modules/wechat";
 
 const router: Router = Router();
 
 router.use("/sms", sms);
+router.use("/jpushNotification", jpushNotification);
 router.use("/wechats", wechat);
 router.use("/smsByTemplate", template);
 

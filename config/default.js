@@ -30,7 +30,13 @@ module.exports = {
       require: 'mdc-sms-aliyun',
       AccessKeyId: process.env.APPKEY, // 填写你的AccessKeyId,可以登录阿里云查找
       AccessKeySecret: process.env.APPSECRET // 填写你的AccessKeySecret，可以登录阿里云查找
-    }]
+    },
+      {
+          queueName: process.env.JPUSH_NOTIFICATION_QUEUE,
+          require: 'airplake-node-JPush',
+          AccessKeyId: process.env.JPUSHAPPKEY, // 填写你的appKey,可以登录极光查找
+          AccessKeySecret: process.env.JPUSHMASTERSECRET // 填写你的masterSecret，可以登录极光查找
+        }]
   },
   wechatTemplate: {
     '1': process.env.WECHAT_TEMPLATE_ID
