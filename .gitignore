@@ -53,8 +53,5 @@ apidoc
 
 
 # config
-config/default.js
-config/staging.js
-config/production.js
 doc
 tags

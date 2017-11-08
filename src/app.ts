@@ -9,10 +9,8 @@
 
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
-import * as dotenv from "dotenv";
 import * as express from "express";
 import * as methodOverride from "method-override";
-dotenv.config();   // before config
 import * as config from "config";
 import * as log4js from "log4js";
 import { start } from "./boot";

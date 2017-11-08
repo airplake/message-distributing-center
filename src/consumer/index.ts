@@ -1,4 +1,3 @@
-require('dotenv').config(); // eslint-disable-line
 const consumer = require('../lib/rabbitmq/worker')
 
 consumer.start(function (err:Error) {
