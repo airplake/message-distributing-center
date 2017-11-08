@@ -15,22 +15,29 @@ module.exports = {
     }
   },
   queue: {
-        // connection: 'amqp://yedian:yedian123outfox@staging-api.chinacloudapp.cn:5672',
+    // connection: 'amqp://yedian:yedian123outfox@staging-api.chinacloudapp.cn:5672',
     connection: process.env.AMP_URL,
     channel: 'MDC_QUEUE',
     consumerAdapters: [{
-      queueName: process.env.EMAIL_QUEUE,
-      require: 'mdc-email-smtp'
-    }, {
-      queueName: process.env.WECHAT_QUEUE,
-      require: 'mdc-weixin',
-      tokenUrl: process.env.TOKEN_URL
-    }, {
-      queueName: process.env.SMS_ALIYUN_QUEUE,
-      require: 'mdc-sms-aliyun',
-      AccessKeyId: process.env.APPKEY, // 填写你的AccessKeyId,可以登录阿里云查找
-      AccessKeySecret: process.env.APPSECRET // 填写你的AccessKeySecret，可以登录阿里云查找
-    }]
+        queueName: process.env.EMAIL_QUEUE,
+        require: 'mdc-email-smtp'
+      }, {
+        queueName: process.env.WECHAT_QUEUE,
+        require: 'mdc-weixin',
+        tokenUrl: process.env.TOKEN_URL
+      }, {
+        queueName: process.env.SMS_ALIYUN_QUEUE,
+        require: 'mdc-sms-aliyun',
+        AccessKeyId: process.env.APPKEY, // 填写你的AccessKeyId,可以登录阿里云查找
+        AccessKeySecret: process.env.APPSECRET // 填写你的AccessKeySecret，可以登录阿里云查找
+      },
+      {
+        queueName: process.env.JPUSH_NOTIFICATION_QUEUE,
+        require: 'airplake-node-JPush',
+        JPushAppKey: process.env.JPUSHAPPKEY, // 填写你的appKey,可以登录极光查找
+        JPushMasterSecret: process.env.JPUSHMASTERSECRET // 填写你的masterSecret，可以登录极光查找
+      }
+    ]
   },
   wechatTemplate: {
     '1': process.env.WECHAT_TEMPLATE_ID
@@ -80,7 +87,10 @@ module.exports = {
         maxLogSize: 20480,
         backups: 1,
         category: 'http',
-        layout: { type: 'json', separator: ',' }
+        layout: {
+          type: 'json',
+          separator: ','
+        }
       },
       {
         type: 'file',
@@ -88,7 +98,10 @@ module.exports = {
         maxLogSize: 20480,
         backups: 1,
         category: 'init',
-        layout: { type: 'json', separator: ',' }
+        layout: {
+          type: 'json',
+          separator: ','
+        }
       },
       {
         type: 'file',
@@ -96,7 +109,10 @@ module.exports = {
         maxLogSize: 52428800,
         backups: 2,
         category: 'sms',
-        layout: { type: 'json', separator: ',' }
+        layout: {
+          type: 'json',
+          separator: ','
+        }
       },
       {
         type: 'file',
@@ -104,7 +120,10 @@ module.exports = {
         maxLogSize: 52428800,
         backups: 1,
         category: 'wechat',
-        layout: { type: 'json', separator: ',' }
+        layout: {
+          type: 'json',
+          separator: ','
+        }
       }
     ]
   }
