@@ -14,7 +14,8 @@ exports.start = function (callback) {
       ch.bindQueue(`${CHANNEL}.${adapter.queueName}`, `mdc`, `${CHANNEL}.${adapter.queueName}`)
       ch.consume(`${CHANNEL}.${adapter.queueName}`, (msg) => {
         if (msg !== null) {
-          let message = JSON.parse(msg.content.toString())
+          let message = JSON.parse(msg.content.toString()) || {}
+          console.log('message', message)
           require(adapter.require).create(adapter).emit(message.emit || 'message', message.message, function (err) {
             if (err) {
               ch.ack(msg)

@@ -19,15 +19,20 @@ jpushNotification.post('/',
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             logger.info('jpushNotification:post:', req.body)
-            let code = Math.floor(100000 + Math.random() * 900000)
+            let body = req.body
             let result = await JPushNotification.forge({
-                notificationId: req.body.id,//TODO:这里的forge方法是什么鬼,这个obj的属性可以随意定义吗？
-                code: code,
-                createtime: new Date()
+                audience: body.audience, // 要发送目标:all || ios || android || "[$jpush_regId1, $jpush_regId2,...]"//必填
+                title:body.title , // 通知标题 , 可选
+                content: body.content, // 通知的具体内容 //必填
+                // android: body.android||'',
+                // ios: body.ios||'',
+                // options: body.options||'',
+                extra: body.extra||'', // 额外的信息，json格式 可选
             }).save()
-            let message = req.body;
-            logger.info('jpushNotification:post:message', message)
-            publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
+
+            logger.info('jpushNotification:post:message', result)
+            
+            publisher.publish({message:result}, require('config').queue.consumerAdapters[3].queueName, function () {
                 res.send(result)
             })
         } catch (error) {

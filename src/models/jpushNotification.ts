@@ -11,8 +11,8 @@
 import bookshelf from '../lib/db'
 
 
-const JPushNotification = bookshelf.Model.extend({
-    tableName: 'jpushNotification'
+const JPush = bookshelf.Model.extend({
+    tableName: 'jpush'
 })
 
-export default JPushNotification
+export default JPush

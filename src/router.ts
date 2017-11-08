@@ -16,7 +16,7 @@ import { wechat } from "./modules/wechat";
 const router: Router = Router();
 
 router.use("/sms", sms);
-router.use("/jpushNotification", jpushNotification);
+router.use("/jpush", jpushNotification);
 router.use("/wechats", wechat);
 router.use("/smsByTemplate", template);
 
