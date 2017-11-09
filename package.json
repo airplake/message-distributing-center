@@ -18,7 +18,7 @@
     }
   },
   "dependencies": {
-    "airplake-node-jpuscross-env NODE_ENVh": "^1.0.0",
+    "airplake-node-jpush": "^1.0.1",
     "amqplib": "^0.5.1",
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
