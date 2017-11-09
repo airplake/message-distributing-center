@@ -16,6 +16,7 @@ exports.start = function (callback) {
         if (msg !== null) {
           let message = JSON.parse(msg.content.toString()) || {}
           console.log('message', message)
+          // ch.ack(msg)
           require(adapter.require).create(adapter).emit(message.emit || 'message', message.message, function (err) {
             if (err) {
               ch.ack(msg)

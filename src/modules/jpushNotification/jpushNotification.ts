@@ -21,7 +21,10 @@ const jpushNotification: Router = Router();
 jpushNotification.post('/',
     queryValidator({
         body: joi.object().keys({
-            audience: joi.string().required(),
+            audience:joi.alternatives([
+                joi.string().required(),
+                joi.array().required()
+            ]),
             title: joi.string(),
             content: joi.string().required(),
             android: joi.object(),
@@ -35,7 +38,7 @@ jpushNotification.post('/',
             logger.info('jpushNotification:post:', req.body)
             let body = req.body
             let result = await JPushNotification.forge({
-                audience: body.audience, // 要发送目标:all || ios || android || "[$jpush_regId1, $jpush_regId2,...]"//必填
+                audience: body.audience.toString(), // 要发送目标:all || ios || android || "[$jpush_regId1, $jpush_regId2,...]"//必填
                 title: body.title, // 通知标题 , 可选
                 content: body.content, // 通知的具体内容 //必填
                 android: body.android || '',
