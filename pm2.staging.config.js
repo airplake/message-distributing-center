@@ -14,8 +14,8 @@ module.exports = {
       'WECHAT_TEMPLATE_ID': '1',
       'SMS_FREE_SIGN_NAME_0': '悦夜NightPlus'
     },
-    'instances': 'max', // 如果是fork, 不用配置
-    'exec_mode': 'cluster' // cluster or fork
+    // 'instances': 'max', // 如果是fork, 不用配置
+    'exec_mode': 'fork' // cluster or fork
   },
   {
     name: 'mdc-user-consumer-1',
@@ -28,8 +28,8 @@ module.exports = {
       'WECHAT_TEMPLATE_ID': '1',
       'SMS_FREE_SIGN_NAME_0': '悦夜NightPlus'
     },
-    'instances': 'max', // 如果是fork, 不用配置
-    'exec_mode': 'cluster' // cluster or fork
+    // 'instances': 'max', // 如果是fork, 不用配置
+    'exec_mode': 'fork' // cluster or fork
   },
   {
     name: 'mdc-venues',
@@ -42,8 +42,8 @@ module.exports = {
       'WECHAT_TEMPLATE_ID': '1',
       'SMS_FREE_SIGN_NAME_0': '悦夜NightPlus'
     },
-    'instances': 'max', // 如果是fork, 不用配置
-    'exec_mode': 'cluster' // cluster or fork
+    // 'instances': 'max', // 如果是fork, 不用配置
+    'exec_mode': 'fork' // cluster or fork
   },
   {
     name: 'mdc-venues-consumer-1',
@@ -56,8 +56,8 @@ module.exports = {
       'WECHAT_TEMPLATE_ID': '1',
       'SMS_FREE_SIGN_NAME_0': '悦夜NightPlus'
     },
-    'instances': 'max', // 如果是fork, 不用配置
-    'exec_mode': 'cluster' // cluster or fork
+    // 'instances': 'max', // 如果是fork, 不用配置
+    'exec_mode': 'fork' // cluster or fork
   }
   ]
 }
