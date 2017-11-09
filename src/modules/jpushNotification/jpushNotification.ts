@@ -21,7 +21,13 @@ const jpushNotification: Router = Router();
 jpushNotification.post('/',
     queryValidator({
         body: joi.object().keys({
-          
+            audience: joi.string().required(),
+            title: joi.string(),
+            content: joi.string().required(),
+            android: joi.object(),
+            ios: joi.object(),
+            options: joi.object(),
+            extra: joi.object()
         })
     }),
     async (req: Request, res: Response, next: NextFunction) => {
@@ -38,9 +44,11 @@ jpushNotification.post('/',
                 extra: body.extra || '', // 额外的信息，json格式 可选
             }).save()
 
-            logger.info('jpushNotification:post:message', result)
+            let message = req.body
+            message.id = result.id
 
-            publisher.publish({ message: result }, require('config').queue.consumerAdapters[3].queueName, function () {
+            logger.info('jpushNotification:post:message', message)
+            publisher.publish({ message }, require('config').queue.consumerAdapters[3].queueName, function () {
                 res.send(result)
             })
         } catch (error) {

@@ -48,7 +48,10 @@ app.use("*", function(req, res) {
   return res.sendStatus(404);
 });
 
+
 if (!module.parent) {
+  logger.info(`node:env`,process.env.NODE_ENV);
+  logger.info(`config,${JSON.stringify(config)}`);
   app.listen(config.get("app.port") || 4000, config.get("app.host") || "127.0.0.1", () => {
     // publisher
     start((err: Error) => {
