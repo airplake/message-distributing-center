@@ -30,5 +30,7 @@ exports.start = function (callback) {
     }, function () {
       callback()
     })
+  }).catch(err => {
+    return callback(err)
   })
 }

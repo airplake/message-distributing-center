@@ -5,7 +5,7 @@ var connStr = RABBITMQ_URL || 'amqp://admin:admin@192.168.1.9:5672'
 
 let conn
 
-function connect() {
+function connect () {
   return new Promise((resolve, reject) => {
     if (conn) return resolve(conn)
     amqp.connect(connStr).then((_conn) => {
@@ -14,16 +14,19 @@ function connect() {
       // process.once('SIGINT', conn.close.bind(conn))
       conn = _conn
       // 监听连接关闭事件
-      conn.on('close', () => {
+      conn.on('close', (err) => {
         console.log('rabbimq连接关闭')
+        reject(err)
       })
       // 监听连接错误事件
       conn.on('error', (err) => {
         console.error(`rabbimq连接出错:`, err)
+        reject(err)
       })
       // 监听连接阻塞事件
       conn.on('blocked', (reason) => {
         console.error(`连接阻塞，原因:${reason}`)
+        reject(reason)
       })
       // 监听阻塞连接恢复正常事件
       conn.on('unblocked', () => {

@@ -7,11 +7,23 @@
  * Copyright (c) 2017 Your Company
  */
 
-const start = (callback:Function) =>{
+const start = (callback:Function,retry:number = 0) =>{
     const publisher = require('../lib/rabbitmq/producer')
     // console.log('Connecting to RabbitMQ...')
+    //let retry = 5 
     publisher.start(function (err:Error) {
-      if (err) return callback(err)
+      //if (err) return callback(err)
+
+      while (err) {
+        if(retry<5){
+          retry ++
+          console.log('retry',retry)
+          return start(callback,retry)
+        }
+        return callback(err)
+      }
+
+
       console.log('Connecting to RabbitMQ...')
       callback()
     })

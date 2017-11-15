@@ -17,13 +17,23 @@ exports.start = function (callback) {
     }, function () {
       callback()
     })
+  }).catch(err => {
+    return callback(err)
   })
 }
 
-exports.publish = function (message, consumerAdapter, callback) {
-  // const retry = arguments[3] || 0;
-  const routingKey = `${CHANNEL}.${consumerAdapter}`
+exports.publish = function (message, consumerAdapter, callback, retry = 0) {
+  try {
+      // const retry = arguments[3] || 0;
+    const routingKey = `${CHANNEL}.${consumerAdapter}`
   // console.log('consumerAdapter', routingKey)
-  ch.publish(`mdc`, routingKey, Buffer.from(JSON.stringify(message)), { deliveryMode: 2, contentType: 'application/json' })
-  callback()
+    ch.publish(`mdc`, routingKey, Buffer.from(JSON.stringify(message)), { deliveryMode: 2, contentType: 'application/json' })
+    return callback()
+  } catch (error) {
+    if (retry < 3) {
+      retry++
+      return exports.publish(message, consumerAdapter, callback)
+    }
+    return callback()
+  }
 }
