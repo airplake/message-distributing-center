@@ -52,8 +52,9 @@ jpushNotification.post('/',
 
             logger.info('jpushNotification:post:message', message)
             publisher.publish({ message }, require('config').queue.consumerAdapters[3].queueName, function () {
-                res.send(result)
+                
             })
+            res.send(result)
         } catch (error) {
             logger.error('jpushNotification:post:error', error)
             res.status(500).send(error)

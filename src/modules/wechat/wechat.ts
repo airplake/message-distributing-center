@@ -34,8 +34,9 @@ wechat.post("/",
             }
             logger.info("wechat:post:message", req.body);
             publisher.publish(req.body, require("config").queue.consumerAdapters[1].queueName, function() {
-                res.send(result);
+               // res.send(result);
             });
+            res.send(result)
         } catch (error) {
             logger.error("wechat:post:error", error);
             res.status(500).send(error);

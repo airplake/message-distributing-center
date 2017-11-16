@@ -40,8 +40,9 @@ sms.post('/',
             }
             logger.info('sms:post:message', message)
             publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
-                res.send(result)
+               // res.send(result)
             })
+            res.send(result)
         } catch (error) {
             logger.error('sms:post:error', error)
             res.status(500).send(error)

@@ -40,8 +40,9 @@ template.post('/',
             }
             logger.info('template:post:message', message)
             publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
-                res.send(result)
+               // res.send(result)
             })
+            res.send(result)
         } catch (error) {
             logger.error('template:post:error', error)
             res.status(500).send(error)
