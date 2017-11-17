@@ -7,6 +7,7 @@ module.exports = {
     name: 'mdc-user',
     script: './dist/app.js',
     env: { // all environment
+      'NODE_CONFIG_DIR': '/var/www/mdc-v5/config',
       'NODE_ENV': 'production',
       'APP_PORT': '3001',
       'WECHAT_QUEUE': 'wechat',
@@ -21,6 +22,7 @@ module.exports = {
     name: 'mdc-user-consumer-1',
     script: './dist/consumer/index.js',
     env: { // all environment
+      'NODE_CONFIG_DIR': '/var/www/mdc-v5/config',
       'NODE_ENV': 'production',
       'APP_PORT': '3001',
       'WECHAT_QUEUE': 'wechat',
@@ -35,6 +37,7 @@ module.exports = {
     name: 'mdc-venues',
     script: './dist/app.js',
     env: { // all environment
+      'NODE_CONFIG_DIR': '/var/www/mdc-v5/config',
       'NODE_ENV': 'production',
       'APP_PORT': '3023',
       'WECHAT_QUEUE': 'wechat-venues',
@@ -49,6 +52,7 @@ module.exports = {
     name: 'mdc-venues-consumer-1',
     script: './dist/consumer/index.js',
     env: { // all environment
+      'NODE_CONFIG_DIR': '/var/www/mdc-v5/config',
       'NODE_ENV': 'production',
       'APP_PORT': '3023',
       'WECHAT_QUEUE': 'wechat-venues',
