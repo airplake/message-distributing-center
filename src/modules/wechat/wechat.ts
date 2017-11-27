@@ -22,7 +22,7 @@ wechat.post("/",
             logger.info("wechat:post:", req.body);
             const result = await Wechat.forge({
                 queue: "wechat",
-                message: encodeURI(JSON.stringify(req.body.message)),
+                message: encodeURI(JSON.stringify(req.body.message)) || '',
                 emit: req.body.emit,
             }).save();
             switch (req.body.emit) {

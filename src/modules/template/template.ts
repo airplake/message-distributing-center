@@ -24,7 +24,7 @@ template.post('/',
             let result = await Template.forge({
                 tel: req.body.tel,
                 code: code,
-                message: encodeURI(req.body.message),
+                message: encodeURI(req.body.message) || '',
                 templateid: req.body.templateid,
                 createtime: new Date()
             }).save()
