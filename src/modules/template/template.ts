@@ -48,7 +48,7 @@ template.post('/',
             }
             
             // delete TemplateParam
-            if (!req.body.message){
+            if (!message.message.TemplateParam){
                 delete message.message.TemplateParam
             }
 
