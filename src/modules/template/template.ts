@@ -29,15 +29,29 @@ template.post('/',
                 createtime: new Date()
             }).save()
 
+            // if(!req.body.message){
+            //     req.body.message = {
+            //         name : ''
+            //     }
+            // }
+
+    
+
             let message = {
                 message: {
                     PhoneNumbers: req.body.tel, // 要发送到短信的手机
                     SignName: smsTemplate[req.body.templateid].SignName, // 短信签名，阿里云短信平台申请
                     TemplateCode: smsTemplate[req.body.templateid].TemplateCode, // 短信模板Code，阿里云短信平台申请
-                    TemplateParam:Object.assign({"name":(req.body.message.name || req.body.message)}, req.body.message),
+                    TemplateParam: req.body.message ? Object.assign({"name":(req.body.message.name || req.body.message)}, req.body.message) : undefined,
                     OutId: ''// 可选
                 }
             }
+            
+            // delete TemplateParam
+            if (!req.body.message){
+                delete message.message.TemplateParam
+            }
+
             logger.info('template:post:message', message)
             publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
                // res.send(result)
