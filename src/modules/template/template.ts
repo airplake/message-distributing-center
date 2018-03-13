@@ -65,6 +65,4 @@ template.post('/',
 )
 
 
-Object.assign({"name":111}, 11)
-
 export { template }
