@@ -18,7 +18,7 @@
     }
   },
   "dependencies": {
-    "airplake-node-jpush": "^1.0.1",
+    "airplake-node-jpush": "^1.0.2",
     "amqplib": "^0.5.1",
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
