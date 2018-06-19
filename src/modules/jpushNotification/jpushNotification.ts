@@ -30,7 +30,7 @@ jpushNotification.post('/',
             android: joi.object(),
             ios: joi.object(),
             options: joi.object(),
-            extras: joi.object()
+            extra: joi.object()
         })
     }),
     async (req: Request, res: Response, next: NextFunction) => {
@@ -44,7 +44,7 @@ jpushNotification.post('/',
                 android: body.android ? JSON.stringify(body.android) : '',
                 ios:  body.ios? JSON.stringify( body.ios) : '',
                 options: body.options ? JSON.stringify(body.options): '',
-                extras: body.extras ? JSON.stringify(body.extras):'', // 额外的信息，json格式 可选
+                extra: body.extra ? JSON.stringify(body.extra):'', // 额外的信息，json格式 可选
             }).save()
 
             let message = req.body
