@@ -40,7 +40,7 @@ jpushNotification.post('/',
             let result = await JPushNotification.forge({
                 audience: body.audience.toString(), // 要发送目标:all || ios || android || "[$jpush_regId1, $jpush_regId2,...]"//必填
                 title: body.title, // 通知标题 , 可选
-                content: encodeURI(body.content), // 通知的具体内容 //必填
+                content: body.content, // 通知的具体内容 //必填
                 android: body.android ? JSON.stringify(body.android) : '',
                 ios:  body.ios? JSON.stringify( body.ios) : '',
                 options: body.options ? JSON.stringify(body.options): '',
