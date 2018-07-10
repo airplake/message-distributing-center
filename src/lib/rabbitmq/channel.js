@@ -1,7 +1,7 @@
 const amqp = require('amqplib')
 const RABBITMQ_URL = require('config').queue.connection
 // RABBITMQ_URL ||
-var connStr = RABBITMQ_URL || 'amqp://admin:admin@192.168.1.9:5672'
+var connStr = RABBITMQ_URL
 
 let conn
 
@@ -15,6 +15,7 @@ function connect () {
       conn = _conn
       // 监听连接关闭事件
       conn.on('close', (err) => {
+        connect()
         console.log('rabbimq连接关闭')
         reject(err)
       })
