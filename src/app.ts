@@ -13,7 +13,7 @@ import * as express from "express";
 import * as methodOverride from "method-override";
 import * as config from "config";
 import * as log4js from "log4js";
-import { start } from "./boot";
+// import { start } from "./boot";
 import router from "./router";
 
 // log config
@@ -54,10 +54,10 @@ if (!module.parent) {
   logger.info(`config,${JSON.stringify(config)}`);
   app.listen(config.get("app.port") || 4000, config.get("app.host") || "127.0.0.1", () => {
     // publisher
-    start((err: Error) => {
-      if (err) return  logger.error(`rabbitmq error`, err);
-      logger.info(`服务器启动，${config.get("app.host")}:${config.get("app.port")}`);
-    });
+    // start((err: Error) => {
+    //   if (err) return  logger.error(`rabbitmq error`, err);
+    //   logger.info(`服务器启动，${config.get("app.host")}:${config.get("app.port")}`);
+    // });
 
   });
 }

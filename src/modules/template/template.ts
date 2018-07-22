@@ -15,6 +15,7 @@ const smsTemplate = require('config').smsTemplate
 
 const template: Router = Router();
 const logger = log4js.getLogger('sms')
+import { mqSend } from '../../utils'
 
 template.post('/',
     async (req: Request, res: Response, next: NextFunction) => {
@@ -53,9 +54,15 @@ template.post('/',
             }
         
             logger.info('template:post:message', message)
-            publisher.publish(message , require('config').queue.consumerAdapters[2].queueName, function () {
+            //
+            // publisher.publish(message , require('config').queue.consumerAdapters[2].queueName, function () {
 
-            })
+            // })
+
+            mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+
+
+
             res.send(result)
         } catch (error) {
             logger.error('template:post:error', error)

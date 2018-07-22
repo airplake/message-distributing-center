@@ -2,6 +2,7 @@ const amqp = require('amqplib')
 const config = require('config')
 const RABBITMQ_URL = require('config').queue.connection
 // RABBITMQ_URL ||
+console.log('RABBITMQ_URL',RABBITMQ_URL)
 var connStr = RABBITMQ_URL
 
 let conn

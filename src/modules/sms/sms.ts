@@ -12,6 +12,8 @@ import { Router, Request, Response, NextFunction } from 'express';
 import Sms from '../../models/sms'
 const publisher = require('../../lib/rabbitmq/producer')
 const smsTemplate = require('config').smsTemplate
+import { mqSend } from '../../utils'
+
 
 const logger = log4js.getLogger('sms')
 const sms: Router = Router();
@@ -39,9 +41,12 @@ sms.post('/',
                 message.message.TemplateCode = smsTemplate[2].TemplateCode
             }
             logger.info('sms:post:message', message)
-            publisher.publish(message, require('config').queue.consumerAdapters[2].queueName, function () {
-               // res.send(result)
-            })
+            // mqSend(message, require('config').queue.consumerAdapters[2].queueName, function () {
+            //    // res.send(result)
+            // })
+
+            mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            
             res.send(result)
         } catch (error) {
             logger.error('sms:post:error', error)

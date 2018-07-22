@@ -12,6 +12,7 @@ import * as joi from 'joi'
 import { Router, Request, Response, NextFunction, json } from 'express';
 import JPushNotification from '../../models/jpushNotification'
 import { ValidateMiddleware as queryValidator } from '../../middlewares'
+import { mqSend } from '../../utils'
 
 const publisher = require('../../lib/rabbitmq/producer')
 
@@ -51,9 +52,12 @@ jpushNotification.post('/',
             message.id = result.id
 
             logger.info('jpushNotification:post:message', message)
-            publisher.publish({ message }, require('config').queue.consumerAdapters[3].queueName, function () {
+            // publisher.publish({ message }, require('config').queue.consumerAdapters[3].queueName, function () {
                 
-            })
+            // })
+
+            mqSend(message, require('config').queue.consumerAdapters[3].queueName)
+
             res.send(result)
         } catch (error) {
             logger.error('jpushNotification:post:error', error)

@@ -12,6 +12,7 @@ import * as log4js from "log4js";
 import Wechat from "../../models/wechat";
 const publisher = require("../../lib/rabbitmq/producer");
 const wechatTemplate = require("config").wechatTemplate;
+import { mqSend } from '../../utils'
 
 const logger = log4js.getLogger("wechat");
 const wechat: Router = Router();
@@ -33,9 +34,13 @@ wechat.post("/",
                     break;
             }
             logger.info("wechat:post:message", req.body);
-            publisher.publish(req.body, require("config").queue.consumerAdapters[1].queueName, function() {
-               // res.send(result);
-            });
+            // publisher.publish(req.body, require("config").queue.consumerAdapters[1].queueName, function() {
+            //    // res.send(result);
+            // });
+
+            mqSend(req.body, require('config').queue.consumerAdapters[1].queueName)
+
+
             res.send(result)
         } catch (error) {
             logger.error("wechat:post:error", error);
