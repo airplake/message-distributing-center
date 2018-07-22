@@ -1,11 +1,13 @@
 const amqp = require('amqplib')
+const config = require('config')
 const RABBITMQ_URL = require('config').queue.connection
 // RABBITMQ_URL ||
 var connStr = RABBITMQ_URL
 
 let conn
+let count = 0
 
-function connect () {
+function connect() {
   return new Promise((resolve, reject) => {
     if (conn) return resolve(conn)
     amqp.connect(connStr).then((_conn) => {
@@ -15,13 +17,27 @@ function connect () {
       conn = _conn
       // 监听连接关闭事件
       conn.on('close', (err) => {
-        connect()
+
+        if(count < 5 ){
+          connect()
+          sendMail()
+          count++ 
+        }
+
+
         console.log('rabbimq连接关闭')
         reject(err)
       })
       // 监听连接错误事件
       conn.on('error', (err) => {
         console.error(`rabbimq连接出错:`, err)
+
+        if(count < 5 ){
+          connect()
+          sendMail()
+          count++ 
+        }
+
         reject(err)
       })
       // 监听连接阻塞事件
@@ -36,6 +52,14 @@ function connect () {
       resolve(conn)
     }).catch((err) => {
       console.error(`连接rabbitmq失败，`, err)
+
+      if(count < 5 ){
+        sendMail()
+        count++ 
+      }
+
+
+
       reject(err)
     })
   })
@@ -68,5 +92,38 @@ exports.createChannel = function () {
         console.error(`创建channel失败，`, err)
         reject(err)
       })
+  })
+}
+
+
+const nodemailer = require('nodemailer')
+const poolconfig = {
+  pool: true,
+  host: 'smtp.partner.outlook.cn',
+  port: 587,
+  secure: false, // use TLS
+  auth: {
+    user: config.get('email.user'),
+    pass: config.get('email.pass')
+  }
+}
+const smtpTransport = nodemailer.createTransport(poolconfig)
+
+function sendMail() {
+  const mailOptions = {
+    from: 'xuchen@nightplus.cn', // 发件地址
+    to: '503945930@qq.com,xuchen@nightplus.cn,565211542@qq.com', // 收件列表
+    subject: 'mdc消息服务报警,请检查', // 标题
+    html: `mdc消息服务报警,请检查`
+  }
+
+
+
+  smtpTransport.sendMail(mailOptions, function (error, response) {
+    if (error) {
+      logger.error(`combo_put - sendMail failed: mailsOptions: ${JSON.stringify(mailOptions)}, error message: ${JSON.stringify(error.error_msg ? error : error.stack)}`)
+    } else {
+      logger.info('combo_put - 发送邮件成功')
+    }
   })
 }

@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon  ./src/app.ts --exec ts-node  --no-cache  --ignore=./config",
-    "build": "tsc & cp -rf ./src/lib/rabbitmq  ./dist/lib/rabbitmq"
+    "build": "tsc & cp -r -f ./src/lib/rabbitmq  ./dist/lib/rabbitmq"
   },
   "config": {
     "pre-git": {
@@ -33,6 +33,7 @@
     "mdc-weixin": "^1.0.5",
     "method-override": "^2.3.9",
     "mysql": "^2.14.1",
+    "nodemailer": "^4.6.7",
     "np-q-producer": "^1.0.1",
     "standard": "^10.0.3",
     "tslint": "^5.7.0",
