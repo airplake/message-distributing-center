@@ -35,43 +35,54 @@ template.post('/',
                     PhoneNumbers: req.body.tel, // 要发送到短信的手机
                     SignName: smsTemplate[req.body.templateid].SignName, // 短信签名，阿里云短信平台申请
                     TemplateCode: smsTemplate[req.body.templateid].TemplateCode, // 短信模板Code，阿里云短信平台申请
-                    TemplateParam:undefined,            
+                    TemplateParam: undefined,
                     OutId: ''// 可选
                 }
             }
 
-            if(!req.body.message || req.body.message === ''){
+            if (!req.body.message || req.body.message === '') {
                 delete message.message.TemplateParam
             }
-            else{
-                if(typeof req.body.message === 'object'){
-                   //  message.message.TemplateParam  = JSON.stringify(req.body.message)
+            else {
+                if (typeof req.body.message === 'object') {
 
-                //    for (const key in req.body.message) {
-                //        if (req.body.message.hasOwnProperty(key)) {
-                //            const element = req.body.message[key];
-                //            if(element.length > 6){
-                //             req.body.message[key] = element.substring(0,3) + '...'
-                //            }
-                //        }
-                //    }
+                    if (parseInt(req.body.templateid) === 14) {
+                        message.message.TemplateParam = JSON.stringify(req.body.message)
 
-                   message.message.TemplateParam  = JSON.stringify(req.body.message)
+                        for (const key in req.body.message) {
+                            if (req.body.message.hasOwnProperty(key)) {
+                                const element = req.body.message[key];
+                                if (element.length > 6) {
+                                    req.body.message[key] = element.substring(0, 4) + '...'
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        message.message.TemplateParam = JSON.stringify(req.body.message)
+                    }
+
+
                 }
-                if(typeof req.body.message === 'string'){
-                    message.message.TemplateParam  = JSON.stringify({"name":req.body.message})
+                if (typeof req.body.message === 'string') {
+                    //  message.message.TemplateParam = JSON.stringify({ "name": req.body.message })
+
+                    if (parseInt(req.body.templateid) === 14) {
+                        if (req.body.message.length > 6) {
+                            message.message.TemplateParam = JSON.stringify({ "name": (req.body.message.substring(0, 4) + '...') })
+                        } else {
+                            message.message.TemplateParam = JSON.stringify({ "name": req.body.message })
+                        }
+                    }
+                    else {
+                        message.message.TemplateParam = JSON.stringify({ "name": req.body.message })
+                    }
 
 
-                    // if(req.body.message.length > 6){
-                    //     message.message.TemplateParam  = JSON.stringify({"name":(req.body.message.substring(0,3) + '...')})
-                    // }else{
-                    //     message.message.TemplateParam  = JSON.stringify({"name":req.body.message})
-                    // }
-                   
                 }
-                
+
             }
-        
+
             logger.info('template:post:message', message)
             //
             // publisher.publish(message , require('config').queue.consumerAdapters[2].queueName, function () {
