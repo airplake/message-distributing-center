@@ -47,23 +47,26 @@ template.post('/',
                 if(typeof req.body.message === 'object'){
                    //  message.message.TemplateParam  = JSON.stringify(req.body.message)
 
-                   for (const key in req.body.message) {
-                       if (req.body.message.hasOwnProperty(key)) {
-                           const element = req.body.message[key];
-                           if(element.length > 6){
-                            req.body.message[key] = element.substring(0,3) + '...'
-                           }
-                       }
-                   }
+                //    for (const key in req.body.message) {
+                //        if (req.body.message.hasOwnProperty(key)) {
+                //            const element = req.body.message[key];
+                //            if(element.length > 6){
+                //             req.body.message[key] = element.substring(0,3) + '...'
+                //            }
+                //        }
+                //    }
 
                    message.message.TemplateParam  = JSON.stringify(req.body.message)
                 }
                 if(typeof req.body.message === 'string'){
-                    if(req.body.message.length > 6){
-                        message.message.TemplateParam  = JSON.stringify({"name":(req.body.message.substring(0,3) + '...')})
-                    }else{
-                        message.message.TemplateParam  = JSON.stringify({"name":req.body.message})
-                    }
+                    message.message.TemplateParam  = JSON.stringify({"name":req.body.message})
+
+
+                    // if(req.body.message.length > 6){
+                    //     message.message.TemplateParam  = JSON.stringify({"name":(req.body.message.substring(0,3) + '...')})
+                    // }else{
+                    //     message.message.TemplateParam  = JSON.stringify({"name":req.body.message})
+                    // }
                    
                 }
                 
