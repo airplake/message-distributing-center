@@ -52,8 +52,8 @@ template.post('/',
                         for (const key in req.body.message) {
                             if (req.body.message.hasOwnProperty(key)) {
                                 const element = req.body.message[key];
-                                if (element.length > 6) {
-                                    req.body.message[key] = element.substring(0, 4) + '...'
+                                if (element.length > 8) {
+                                    req.body.message[key] = element.substring(0, 8) + '...'
                                 }
                             }
                         }
@@ -68,8 +68,8 @@ template.post('/',
                     //  message.message.TemplateParam = JSON.stringify({ "name": req.body.message })
 
                     if (parseInt(req.body.templateid) === 14) {
-                        if (req.body.message.length > 6) {
-                            message.message.TemplateParam = JSON.stringify({ "name": (req.body.message.substring(0, 4) + '...') })
+                        if (req.body.message.length > 8) {
+                            message.message.TemplateParam = JSON.stringify({ "name": (req.body.message.substring(0, 8) + '...') })
                         } else {
                             message.message.TemplateParam = JSON.stringify({ "name": req.body.message })
                         }
