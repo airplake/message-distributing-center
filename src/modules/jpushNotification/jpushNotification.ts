@@ -56,7 +56,7 @@ jpushNotification.post('/',
                 
             // })
 
-            mqSend(message, require('config').queue.consumerAdapters[3].queueName)
+            mqSend({ message }, require('config').queue.consumerAdapters[3].queueName)
 
             res.send(result)
         } catch (error) {
