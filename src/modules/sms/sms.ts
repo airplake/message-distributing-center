@@ -12,7 +12,8 @@ import { Router, Request, Response, NextFunction } from 'express';
 import Sms from '../../models/sms'
 const publisher = require('../../lib/rabbitmq/producer')
 const smsTemplate = require('config').smsTemplate
-import { mqSend } from '../../utils'
+import { AliyunSms } from '../../utils'
+const config = require('config')
 
 
 const logger = log4js.getLogger('sms')
@@ -45,7 +46,9 @@ sms.post('/',
             //    // res.send(result)
             // })
 
-            mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            // mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            
+            await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
             
             res.send(result)
         } catch (error) {

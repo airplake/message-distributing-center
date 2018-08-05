@@ -15,7 +15,10 @@ const smsTemplate = require('config').smsTemplate
 
 const template: Router = Router();
 const logger = log4js.getLogger('sms')
-import { mqSend } from '../../utils'
+// import { mqSend } from '../../utils'
+import { AliyunSms } from '../../utils'
+const config = require('config')
+
 
 template.post('/',
     async (req: Request, res: Response, next: NextFunction) => {
@@ -91,7 +94,9 @@ template.post('/',
 
             console.log('message type', typeof message.message)
 
-            mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            // mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            console.log('smsAliyun',config.get('smsAliyun'))
+            await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
 
 
 
