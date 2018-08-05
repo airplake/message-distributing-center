@@ -102,6 +102,7 @@ template.post('/',
 
             res.send(result)
         } catch (error) {
+            error.Phone = req.body.tel
             logger.error('template:post:error', error)
             res.status(500).send(error)
         }
