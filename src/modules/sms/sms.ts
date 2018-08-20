@@ -34,7 +34,7 @@ sms.post('/',
                 // console.log('new', moment(new Date()))
                 // console.log(moment(new Date()).diff(moment(result.get('createtime')), 'minutes'))
                 if (moment(new Date()).diff(moment(result.get('createtime')), 'minutes') > 3) {
-                    console.log('3')
+                    // console.log('3')
                     code = Math.floor(100000 + Math.random() * 900000)
                     result = await Sms.forge({
                         phone: req.body.phone,
@@ -43,7 +43,7 @@ sms.post('/',
                     }).save()
                 }
                 else {
-                    console.log('4')
+                    // console.log('4')
                     code = result.get('code')
                 }
 
@@ -64,7 +64,7 @@ sms.post('/',
             logger.info('sms:post:message', message)
 
 
-            // await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
+            await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
 
             res.send(result)
         } catch (error) {
