@@ -32,6 +32,7 @@
     "mdc-sms-aliyun": "^1.0.0",
     "mdc-weixin": "^1.0.5",
     "method-override": "^2.3.9",
+    "moment": "^2.22.2",
     "mysql": "^2.14.1",
     "nodemailer": "^4.6.7",
     "np-q-producer": "^1.0.1",
