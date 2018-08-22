@@ -47,6 +47,13 @@ sms.post('/',
                     code = result.get('code')
                 }
 
+            }else{
+                code = Math.floor(100000 + Math.random() * 900000)
+                result = await Sms.forge({
+                    phone: req.body.phone,
+                    code: code,
+                    createtime: new Date()
+                }).save()
             }
 
             let message = {
