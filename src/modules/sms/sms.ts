@@ -75,7 +75,7 @@ sms.post('/',
 
             res.send(result)
         } catch (error) {
-            // error.Phone = req.body.phone
+            error.Phone = req.body.phone
             logger.error('sms:post:error', error)
             res.status(500).send(error)
         }
