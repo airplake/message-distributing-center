@@ -92,15 +92,18 @@ template.post('/',
 
             // })
 
-            console.log('message type', typeof message.message)
+            // console.log('message type', typeof message.message)
 
-            // mqSend(message, require('config').queue.consumerAdapters[2].queueName)
-            console.log('smsAliyun',config.get('smsAliyun'))
-            await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
-
-
-
+            // // mqSend(message, require('config').queue.consumerAdapters[2].queueName)
+            // console.log('smsAliyun',config.get('smsAliyun'))
             res.send(result)
+
+            try {
+                 await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
+             } catch (error) {
+                 error.Phone = req.body.phone
+                 logger.error('sms:post:error', error)
+             }             
         } catch (error) {
             error.Phone = req.body.tel
             logger.error('template:post:error', error)
