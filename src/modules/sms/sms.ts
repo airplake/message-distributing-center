@@ -71,7 +71,7 @@ sms.post('/',
             logger.info('sms:post:message', message)
 
 
-            await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
+            new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
 
             res.send(result)
         } catch (error) {
