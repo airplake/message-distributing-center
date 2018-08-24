@@ -101,7 +101,7 @@ template.post('/',
             try {
                  await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
              } catch (error) {
-                 error.Phone = req.body.phone
+                 error.Phone = req.body.tel
                  logger.error('sms:post:error', error)
              }             
         } catch (error) {
