@@ -71,9 +71,14 @@ sms.post('/',
             logger.info('sms:post:message', message)
 
 
-            new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
-
             res.send(result)
+
+            try {
+               await new AliyunSms(config.get('smsAliyun')).sendRegistSms(message.message)
+            } catch (error) {
+                error.Phone = req.body.phone
+                logger.error('sms:post:error', error)
+            }            
         } catch (error) {
             error.Phone = req.body.phone
             logger.error('sms:post:error', error)
