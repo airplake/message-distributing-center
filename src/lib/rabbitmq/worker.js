@@ -24,6 +24,8 @@ exports.start = function (callback, retry = 0) {
       ch.bindQueue(`${CHANNEL}.${adapter.queueName}`, `mdc`, `${CHANNEL}.${adapter.queueName}`)
       ch.consume(`${CHANNEL}.${adapter.queueName}`, (msg) => {
         // ch.ack(msg)
+
+        /*
         if (msg !== null) {
           const message = JSON.parse(msg.content.toString()) || {}
           // console.log('work:message',message)
@@ -48,6 +50,21 @@ exports.start = function (callback, retry = 0) {
            // return cb(err, result)
           })
         }
+        */
+
+       if (msg !== null) {
+        const message = JSON.parse(msg.content.toString()) || {}
+        // console.log('message', message)
+        // ch.ack(msg)
+        require(adapter.require).create(adapter).emit(message.emit || 'message', message.message, function (err, result) {
+          if (err) {
+            ch.ack(msg)
+            logger.info('comsumer:err',err)
+            return new Error(`Failed to comsume message ${msg.content.toString()}`)
+          }
+          ch.ack(msg)
+        })
+      }
       }, {
         noAck: false
       })
