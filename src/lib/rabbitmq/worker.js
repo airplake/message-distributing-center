@@ -29,7 +29,7 @@ exports.start = function (callback, retry = 0) {
           // console.log('work:message',message)
           // if error retry 3/1 second
           async.retry({
-            times: 3,
+            times: 1,
             interval: 1000
           }, function (cbr) {
             require(adapter.require).create(adapter).emit(message.emit || 'message', message.message, function (err, result) {
