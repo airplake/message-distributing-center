@@ -18,12 +18,13 @@ function connect() {
       conn = _conn
       // 监听连接关闭事件
       conn.on('close', (err) => {
-
-        if(count < 5 ){
-          connect()
           sendMail()
-          count++ 
-        }
+
+        // if(count < 5 ){
+        //   connect()
+        //   sendMail()
+        //   count++ 
+        // }
 
 
         console.log('rabbimq连接关闭')
@@ -32,12 +33,12 @@ function connect() {
       // 监听连接错误事件
       conn.on('error', (err) => {
         console.error(`rabbimq连接出错:`, err)
-
-        if(count < 5 ){
-          connect()
-          sendMail()
-          count++ 
-        }
+        sendMail()
+        // if(count < 5 ){
+        //   connect()
+        //   sendMail()
+        //   count++ 
+        // }
 
         reject(err)
       })
@@ -53,11 +54,11 @@ function connect() {
       resolve(conn)
     }).catch((err) => {
       console.error(`连接rabbitmq失败，`, err)
-
-      if(count < 5 ){
-        sendMail()
-        count++ 
-      }
+      sendMail()
+      // if(count < 5 ){
+      //   sendMail()
+      //   count++ 
+      // }
 
 
 
