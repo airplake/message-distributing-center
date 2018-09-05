@@ -115,7 +115,7 @@ function sendMail() {
   const mailOptions = {
     from: 'xuchen@nightplus.cn', // 发件地址
     to: '503945930@qq.com,xuchen@nightplus.cn,565211542@qq.com', // 收件列表
-    subject: 'mdc消息服务报警,请检查', // 标题
+    subject: `${process.env.NODE_ENV}mdc消息服务报警,请检查`, // 标题
     html: `mdc消息服务报警,请检查`
   }
 
